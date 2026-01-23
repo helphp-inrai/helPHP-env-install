@@ -1,0 +1,179 @@
+version: "3.4"
+services:
+#***********************************************************
+#************HelPHP basic swarm stack ! Maintained by Myke
+#*********************************************************************************************
+
+#***********************************************************traefik*******************************************************
+  traefik:
+    image:  traefik:2.6
+    command:
+       - "--api.dashboard=false"
+       - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+       - "--providers.docker.swarmMode=true"
+       - "--providers.docker.exposedbydefault=false"
+       - "--providers.docker.network=traefik"
+       - "--entrypoints.web.address=:80"
+#       - "--entrypoints.websecure.address=:443"
+       - "--entrypoints.web.forwardedHeaders.insecure=true"
+#       - "--entrypoints.websecure.forwardedHeaders.insecure=true"
+#       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
+#       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=websecure"
+#       - "--certificatesresolvers.letsencryptresolver.acme.email=myemail@myemail.com"
+#       - "--certificatesresolvers.letsencryptresolver.acme.storage=/letsencrypt/acme.json"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+#      - /mnt/replicated/traefik/acme:/letsencrypt
+    networks:
+      - webgateway
+      - traefik
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+#      - target: 443
+#        published: 443
+#        mode: host
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+#      labels:
+#global https redirect
+#        - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+#        - "traefik.http.routers.http-catchall.entrypoints=web"
+#        - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
+#        - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+#**********************************************************HelPHP*******************************************************
+  MYCONTAINER:
+    image: helphp/instance:latest
+    hostname: MYCONTAINER
+    depends_on:
+      - traefik
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 500M
+      labels :
+        - "traefik.enable=true"
+        - "traefik.http.routers.helphp.rule=hostregexp(`{host:.+}`)"
+#        - "traefik.http.routers.helphp.entrypoints=web"
+#        - "traefik.http.routers.helphp.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.helphp.loadbalancer.server.port=80"
+    volumes:
+      - /mnt/replicated/MYCONTAINER/confs:/opt/configs
+      - /mnt/distreplic/logs/MYCONTAINER:/var/log
+      - /mnt/distreplic/custhome/MYCONTAINER:/home/
+      - /mnt/distreplic/tmps/MYCONTAINER:/tmp
+      - /mnt/replicated/helphp/:/home/helphp/
+    networks:
+      - traefik
+#***********************************************************redis*******************************************************
+  redis:
+    image: redis:latest
+    command:
+      - "redis-server"
+#      - "--cluster-enabled yes"
+#      - "--cluster-config-file nodes.conf"
+#      - "--cluster-node-timeout 5000"
+      - "--appendonly yes"
+      - "--save 60 1"
+      - "--loglevel warning"
+    deploy:
+      #mode: global
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /mnt/replicated/redis:/data
+    networks:
+      - traefik
+#***********************************************************phpmyadmin*******************************************************
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOSTS=maria-master,maria-slave
+    depends_on:
+      - traefik
+    deploy:
+      restart_policy:
+        condition: on-failure
+      replicas: 1
+      labels :
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-vpn"
+        - "traefik.http.routers.pma.rule=PathPrefix(`/pma`)"
+#        - "traefik.http.routers.pma.entrypoints=websecure"
+        - "traefik.http.routers.pma.entrypoints=web"
+#        - "traefik.http.routers.pma.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.pma.loadbalancer.server.port=80"
+    volumes:
+      - /mnt/replicated/pma/config.inc.php:/etc/phpmyadmin/config.inc.php
+    networks:
+      - traefik
+#***********************************************************maria-master*******************************************************
+  maria-master:
+    image: mariadb:10.6
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.mariadb-master == true ]
+    environment:
+      - MARIADB_ROOT_PASSWORD=YOURPASSWORD
+      - CLUSTER=BOOT
+    volumes:
+      - /mnt/replicated/maria-master/my-init.cnf:/etc/mysql/my-init.cnf
+      - /mnt/mysql-db/logs/maria-master:/var/log
+      - /mnt/mysql-db/mysql/maria-master:/var/lib/mysql
+    networks:
+      - traefik
+#***********************************************************maria-slave*******************************************************
+  maria-slave:
+    image: mariadb:10.6
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.mariadb-slave == true ]
+    environment:
+      - MARIADB_ROOT_PASSWORD=YOURPASSWORD
+      - CLUSTER=BOOT
+    volumes:
+      - /mnt/replicated/maria-slave/my-init.cnf:/etc/mysql/my-init.cnf
+      - /mnt/mysql-db/logs/maria-slave:/var/log
+      - /mnt/mysql-db/mysql/maria-slave:/var/lib/mysql
+    networks:
+      - traefik
+#***********************************************************libretranslate*******************************************************
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    hostname: libretranslate
+    command:
+      - "--update-models"
+      #- "--disable-web-ui"
+    depends_on:
+      - traefik
+    volumes:
+      - /mnt/replicated/libretranslate/langs:/home/libretranslate/.local/share/argos-translate
+      - /mnt/replicated/libretranslate/keys/api_keys.db:/app/db/api_keys.db
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 500M
+    networks:
+      - traefik
+#***********************************************************networks*******************************************************
+networks:
+  webgateway:
+    driver: overlay
+    external: true
+  traefik:
+    driver: overlay
