@@ -1,0 +1,25 @@
+#Dockerfile for executing HelPHP projects with ffmpeg encoding 
+#done and maintained by myke moi@myke666.fr
+#to build it first build main Dockerfile then : docker build -t helphp-instance-ffmpeg -f Dockerfile-ffmpeg .
+
+FROM helphp/instance:latest
+
+# WORKAROUND for docker build errors
+
+
+RUN apt-get update --fix-missing && apt-get -y upgrade
+RUN apt install -y libid3tag0
+# Install  ffmpeg
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install ffmpeg x264 x265
+# Cleaning 
+RUN rm -rf /var/lib/apt/lists/* && \
+apt-get purge   --auto-remove && \
+apt-get clean
+
+EXPOSE 80
+RUN mkdir -p /etc/service/_start
+ADD start.sh /etc/service/_start/run
+RUN chmod 777 /etc/service/_start/run
+RUN systemctl enable php8.4-fpm
+
+CMD ["/etc/service/_start/run"]
