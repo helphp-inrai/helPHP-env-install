@@ -1,0 +1,14 @@
+/var/log/php8.4-fpm.log {
+	rotate 12
+	weekly
+	missingok
+	notifempty
+	compress
+	delaycompress
+        copytruncate
+	postrotate
+		if [ -x /usr/lib/php/php8.4-fpm-reopenlogs ]; then
+			/usr/lib/php/php8.4-fpm-reopenlogs;
+		fi
+	endscript
+}

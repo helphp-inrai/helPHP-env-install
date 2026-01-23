@@ -1,0 +1,84 @@
+services:
+  helphp:
+    restart: always
+    image: helphp/instance:latest
+    ports:
+      - "80:80"
+    volumes:
+      - "./YOUR.H.C.NAME/confs:/opt/configs"
+      - "../distreplic/custhome/YOUR.H.C.NAME/default:/home/default"
+      - "../mnt/replicated/helphp:/home/helphp"
+      - "../distreplic/logs/YOUR.H.C.NAME:/var/log"
+      - "../distreplic/tmps/YOUR.H.C.NAME:/tmp"
+      - "./helphp:/home/helphp"
+    networks:
+      globalnetwork:
+
+  mymaria:
+    restart: always
+    image: mariadb:11.8.3
+    container_name: mymariadb
+    volumes:
+      - "./mymaria/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro"
+      - "../mysql-db/mymaria/:/var/lib/mysql"
+    networks:
+      globalnetwork:
+    environment:
+      MARIADB_ROOT_PASSWORD: YOURPASSWORD
+      
+  pma:
+    restart: always
+    image: phpmyadmin/phpmyadmin
+    container_name: mariadb-phpmyadmin
+    volumes:
+      - "./pma/config.inc.php:/etc/phpmyadmin/config.inc.php:ro"
+    ports:
+      - "8001:80"
+    mem_limit: 512m
+    networks:
+      globalnetwork:
+    depends_on:
+      - mymaria
+    environment:
+      - PMA_HOST=mymariadb
+      - PMA_PORT=3306 
+  redis:
+    restart: always
+    image: redis:latest
+    container_name: redis-server
+    command: 
+      - "redis-server"
+      - "--save 60 50"
+      - "--loglevel warning"
+    volumes:
+      - "./redis:/data"
+    mem_limit: 96m
+    networks:
+      globalnetwork:
+
+  libretranslate:
+    container_name: libretranslate
+    image: libretranslate/libretranslate:latest
+    command: 
+      - "--update-models"
+      - "--disable-web-ui"
+    environment:
+      LT_DEBUG: true
+      LT_UPDATE_MODELS: true
+      LT_SSL: true
+      LT_SUGGESTIONS: false
+      LT_API_KEYS: true
+      LT_THREADS: 4
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./libretranslate/langs:/home/libretranslate/.local/share/argos-translate"
+      - "./libretranslate/keys/api_keys.db:/app/db/api_keys.db"
+    networks:
+      globalnetwork:
+      
+networks:
+  globalnetwork:
+    driver: bridge
+
