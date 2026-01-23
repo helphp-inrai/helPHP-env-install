@@ -1,0 +1,12 @@
+[Unit]
+Description=Apache and php fpm start
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash /etc/service/_start/run
+TimeoutStartSec=0
+
+[Install]
+WantedBy=shutdown.target
