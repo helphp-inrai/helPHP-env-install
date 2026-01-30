@@ -10,7 +10,7 @@ fi
 echo "---Installing Docker and creating its dedicated user :"
 read -p "Enter the Docker username: " username
 read -p "Enter its password : " password
-cd helPHP-env-install
+cd "$SCRIPT_DIR"
 bash $SCRIPT_DIR/1-install-docker.sh $username $password
 
 echo "---Preparing launch of the HelPHP Docker container :"
@@ -18,16 +18,16 @@ mkdir /mnt/replicated/helphp
 git clone https://github.com/INRAI-helPHP/helPHP.git /mnt/replicated/helphp
 chown -R $username:www-data /mnt/replicated/helphp
 read -p "Enter a name for your HelPHP container: " container
-bash $SCRIPT_DIR/2-add-container.sh $container $username
+bash "$SCRIPT_DIR/2-add-container.sh" $container $username
 
 echo "---Preparing launch of Mariadb, Redis and libretranslate Docker container :"
 mkdir /mnt/replicated/redis /mnt/replicated/pma /mnt/replicated/mymaria /mnt/mysql-db/mymaria 
-cp $SCRIPT_DIR/confs/mysql/my-init.cnf /mnt/replicated/mymaria/
-cp $SCRIPT_DIR/confs/phpmyadmin/config.inc.php /mnt/replicated/pma/
-cp $SCRIPT_DIR/compose.yaml /mnt/replicated/
-cp -r $SCRIPT_DIR/confs/libretranslate /mnt/replicated/
+cp "$SCRIPT_DIR/confs/mysql/my-init.cnf" /mnt/replicated/mymaria/
+cp "$SCRIPT_DIR/confs/phpmyadmin/config.inc.php" /mnt/replicated/pma/
+cp "$SCRIPT_DIR/compose.yaml" /mnt/replicated/
+cp -r "$SCRIPT_DIR/confs/libretranslate" /mnt/replicated/
 chmod -R 777 /mnt/replicated/libretranslate
-cp $SCRIPT_DIR/compose.yaml /mnt/replicated/
+cp "$SCRIPT_DIR/compose.yaml" /mnt/replicated/
 chown -R $username:www-data /mnt/replicated/compose.yaml
 read -p "Select a root password for MariaDB: " mysqlpass
 sed -i "s/YOUR.H.C.NAME/$container/" /mnt/replicated/compose.yaml
