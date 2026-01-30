@@ -5,7 +5,7 @@ mkdir -p /mnt/replicated/${container}/confs
 mkdir -p /mnt/distreplic/logs/${container}/apache2
 mkdir -p /mnt/distreplic/custhome/${container}/default
 mkdir -p /mnt/distreplic/tmps/${container}
-cp -r $SCRIPT_DIR/confs/helphp-instance/* /mnt/replicated/${servername}/confs/
+cp -r "$SCRIPT_DIR/confs/helphp-instance/"* /mnt/replicated/${servername}/confs/
 
 git clone https://github.com/INRAI-helPHP/helPHP-instance.git /mnt/distreplic/custhome/${container}/default
 
