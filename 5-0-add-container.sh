@@ -9,8 +9,9 @@ cp -r "$SCRIPT_DIR/confs/helphp-instance/"* /mnt/replicated/${servername}/confs/
 
 git clone https://github.com/INRAI-helPHP/helPHP-instance.git /mnt/distreplic/custhome/${container}/default
 
-chown -R www-data:www-data /mnt/replicated/${container}/* /mnt/distreplic/custhome/${container} /mnt/distreplic/tmps/${container} /mnt/distreplic/custhome/${container}/default
-chown -R www-data:www-data  /mnt/distreplic/logs/${container}
+chown -R ${dockeruser}:www-data /mnt/replicated/${servername}/* 
+chown -R www-data:www-data  /mnt/distreplic/logs/${servername} /mnt/distreplic/custhome/${servername} /mnt/distreplic/tmps/${servername} /mnt/distreplic/custhome/${servername}/default
+
 chmod 777 /mnt/distreplic/tmps/${container}
 chmod 775 /mnt/replicated/${container}/confs/sites-available
 
