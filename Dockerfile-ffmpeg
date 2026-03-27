@@ -20,6 +20,6 @@ EXPOSE 80
 RUN mkdir -p /etc/service/_start
 ADD start.sh /etc/service/_start/run
 RUN chmod 777 /etc/service/_start/run
-RUN systemctl enable php8.4-fpm
+RUN systemctl enable php8.5-fpm
 
 CMD ["/etc/service/_start/run"]
