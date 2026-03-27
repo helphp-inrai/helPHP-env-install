@@ -13,7 +13,7 @@ touch /etc/cron.*/*
 crontab /etc/crontab
 /etc/init.d/cron start
 /etc/init.d/ssh start
-/etc/init.d/php8.4-fpm start
+/etc/init.d/php8.5-fpm start
 echo "SetEnv HOST_HOSTNAME \"${HOST_HOSTNAME}\"" > /etc/apache2/dockhostname.conf
 last="${HOST_HOSTNAME#${HOST_HOSTNAME%?}}"
 echo "SetEnv MARIADB_SUFFIX \"${last}\"" >> /etc/apache2/dockhostname.conf
