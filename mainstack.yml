@@ -72,7 +72,7 @@ services:
       - /mnt/distreplic/logs/MYCONTAINER:/var/log
       - /mnt/distreplic/custhome/MYCONTAINER:/home/
       - /mnt/distreplic/tmps/MYCONTAINER:/tmp
-      - /mnt/replicated/helphp/:/home/helphp/
+      - /mnt/replicated/helphp/:/home/helPHP/
     networks:
       - traefik
 #***********************************************************redis*******************************************************
