@@ -4,7 +4,7 @@ apt-get update --fix-missing && apt-get -y upgrade
 
 ## install some basic host utils...
 echo "install basic utils"
-apt-get install -y --no-install-recommends apt-utils whois software-properties-common lsb-release ca-certificates apt-transport-https gnupg2 wget
+apt-get install -y --no-install-recommends apt-utils whois lsb-release ca-certificates apt-transport-https gnupg2 wget
 
 ## Install  PHP and stuff
 #php repository
