@@ -21,12 +21,12 @@ apt install git
 ```
 
 - 2 clonez cette branche : 
-
-`git clone -b LAMP https://github.com/INRAI-helPHP/helPHP-env-install`
-
+```
+git clone -b LAMP https://github.com/INRAI-helPHP/helPHP-env-install`
+```
 - 3 lancez le premier script d'installation pour obtenir Apache et PHP-FPM 8.4 : 
 ```
-cd helphp-env-install
+cd helPHP-env-install
 chmod 777 *-*.sh
 ./1-install-apache-php8-4.sh
 ```
