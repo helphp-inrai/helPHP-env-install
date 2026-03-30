@@ -7,7 +7,7 @@ if you have a server or a VM running a recent Debian, Ubuntu or Mint like linux 
 ```
 apt install -y git && \
 git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
-bash helphp-env-install/one_line_install.sh
+bash helPHP-env-install/one_line_install.sh
 ```
 it will ask for a username and password to create a user dedicated to docker and to launch HelPHP services, a name for your HelPHP container, and finaly the root password for your SQL MariaDB server.
 

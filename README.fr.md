@@ -7,7 +7,7 @@ Si vous avez un serveur ou une VM exécutant un Linux récent comme Debian, Ubun
 ```
 apt install -y git && \
 git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
-bash helphp-env-install/one_line_install.sh
+bash helPHP-env-install/one_line_install.sh
 ```
 
 Le script demandera un nom d'utilisateur et un mot de passe pour créer un utilisateur dédié à docker et lancer les services HelPHP, un nom pour votre conteneur HelPHP, et enfin le mot de passe root pour votre serveur SQL MariaDB.
