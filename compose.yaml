@@ -7,7 +7,7 @@ services:
     volumes:
       - "./YOUR.H.C.NAME/confs:/opt/configs"
       - "../distreplic/custhome/YOUR.H.C.NAME/default:/home/default"
-      - "../mnt/replicated/helphp:/home/helphp"
+      - "./helphp:/home/helPHP"
       - "../distreplic/logs/YOUR.H.C.NAME:/var/log"
       - "../distreplic/tmps/YOUR.H.C.NAME:/tmp"
     networks:
