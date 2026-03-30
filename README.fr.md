@@ -24,11 +24,11 @@ apt install git
 ```
 git clone -b LAMP https://github.com/INRAI-helPHP/helPHP-env-install`
 ```
-- 3 lancez le premier script d'installation pour obtenir Apache et PHP-FPM 8.4 : 
+- 3 lancez le premier script d'installation pour obtenir Apache et PHP-FPM 8.5 : 
 ```
 cd helPHP-env-install
 chmod 777 *-*.sh
-./1-install-apache-php8-4.sh
+./1-install-apache-php8-5.sh
 ```
 
 - 4 test : si vous tapez l'ip de votre serveur dans la barre d'adresse de votre navigateur, vous devriez obtenir la page par défaut d'Apache.
