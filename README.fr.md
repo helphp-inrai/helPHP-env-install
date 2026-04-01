@@ -65,12 +65,12 @@ puis nous clonerons l'instance dans le répertoire servi par défaut d'apache :
 cd /var/www/html
 rm *
 git clone https://github.com/INRAI-helPHP/helPHP-instance /var/www/html
-chown -R www-data:www-data *
+chown -R www-data:www-data /var/www/html
 cd ..
 mkdir data
 chown www-data:www-data data
 ```
 le dossier /var/www/data sera utilisé pour stocker les données manipulées par le système de fichiers helPHP .
-Prenez soin de vérifier votre configuration d'instance puis dans la barre d'adresse de votre navigateur tapez l'ip de votre serveur + '/installscript.php' et vous devriez obtenir l'installateur final HelPHP.
+Prenez soin de vérifier votre configuration d'instance puis dans la barre d'adresse de votre navigateur tapez l'ip de votre serveur et vous devriez voir s'afficher l'installateur final HelPHP.
 
 si vous voulez une autotranslation pour l'UI et le contenu, vous devriez vérifier la version [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), ou installer libretranslate comme un conteneur docker mais pas directement sur la même instance de serveur car c'est vraiment consommateur de ressources.
