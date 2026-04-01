@@ -1,7 +1,7 @@
 #!/bin/bash
 MSA=/usr/bin/mysqladmin
 MARIADB_ROOT_PW=$1
-apt update && apt upgrade && apt install mariadb-server php-mysql -y
+apt update && apt upgrade && apt install mariadb-server php-mysql netcat-openbsd -y
 set -u
 
 # make sure ownership of data dir is OK
