@@ -32,9 +32,9 @@ apt install git
 ```
 
 - 2 clone this branch : 
-
-`git clone -b Docker https://github.com/INRAI-helPHP/helPHP-env-install`
-
+```
+git clone -b Docker https://github.com/INRAI-helPHP/helPHP-env-install`
+```
 - 3 launch the first install script to correctly install docker with a dedicated user (select USER and PASSWORD of course): 
 ```
 cd helphp-env-install
@@ -77,14 +77,21 @@ In general bad performances with docker comes from that, or filesystem issue.
 If you need some PHP extension or any other tools, or if you want to remove something in our selection it's the moment to modify the Dockerfile.
 
 Ready ? so under your docker user account let's build it :
-`docker build -t helphp-instance .`
+```
+docker build -t helphp-instance .
+```
 and we tag it (to use the local image instead of the docker hub one):
-`docker tag helphp-instance helphp/instance:latest`
+```
+docker tag helphp-instance helphp/instance:latest
+```
 after that, if you need you can build the ffmpeg version :
-`docker build -t helphp-instance-ffmpeg -f Dockerfile-ffmpeg .`
+```
+docker build -t helphp-instance-ffmpeg -f Dockerfile-ffmpeg .
+```
 and we tag it :
-`docker tag helphp-instance-ffmpeg helphp/instance:ffmpeg`
-
+```
+docker tag helphp-instance-ffmpeg helphp/instance:ffmpeg
+```
 ## before launching the container
 the first script that installed docker, create also some folders to prepare our installation, so first we need HelPHP libs, and those libs should be shared between all nodes if we create a cluster one day so still as your docker user we'll install it in the "replicated" folder :
 ```
@@ -109,7 +116,9 @@ Long explanation ? yes sure, but short execution :
 
 go back as root user and launch the script number 2 like that : 
 
-`./2-add-container.sh NAME_OF_MY_CONTAINER MY_DOCKER_USERNAME`
+```
+./2-add-container.sh NAME_OF_MY_CONTAINER MY_DOCKER_USERNAME
+```
 
 that's it ... it will prepare the needed folders and will git clone a HelPHP instance in /mnt/distreplic/NAME_OF_MY_CONTAINER/custhome folder of the container
 and it create some folders and copy a bunch of config files...(take a look inside the script please).
@@ -133,7 +142,9 @@ helphp/instance:latest
 ```
 
 Before testing if all y ok, we should set the good rights on the helphp Instance and helPHP core libs in home folder of the instance : 
-`docker exec -ti NAME_OF_MY_CONTAINER chown -R www-data:users /home/default /home/helphp`
+```
+docker exec -ti NAME_OF_MY_CONTAINER chown -R www-data:users /home/default /home/helphp
+```
 
 the host port 80 is redirected to the internal port 80 of the container, so if you type the ip of the host in your navigator adress bar you should get the HelPHP final installer.
 
