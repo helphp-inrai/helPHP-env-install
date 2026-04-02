@@ -23,7 +23,9 @@ So we'll need a little composer stack with tree MySQL servers to make some tests
 In the previous branch for [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), we have finished a stack with a MySQL server, we should use the same stack and make some changes.
 
 - 1 git clone this branch somewhere :
-`git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install`
+```
+git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
+```
 
 you'll find inside the previous files of the Composer branch and some usefull new files...
 
@@ -87,9 +89,11 @@ PhPmyadmin will take care of the 3 MySQL server now.
 
 Two case there : 
 
-you still haven't install HelPHP? , so when you'll launch your_ip/+installscript.php you'll be able to fill the formular and launch it...
+1 - you still haven't install HelPHP? 
+so when you'll visit your_ip in your browser you'll be able to the installscript formular and fill it...
 
-It's already installed ? 
+2 - It's already installed ? 
+You must make some modification configuration
 got to your instance config folder and edit db.php to modify some constants :
 ```
     const MASTER_SLAVE_MODE = true;
@@ -107,12 +111,18 @@ got to your instance config folder and edit db.php to modify some constants :
 of course change YOURUSER, YOURDB, YOURPASSWORD...
 
 Then open a bash session in your running instance container :
-
-'docker exec -it yourcontainerid bash' (type before `docker ps` to get your container id).
+(before type `docker ps` to get your container id).
+```
+docker exec -it yourcontainerid bash
+``` 
 
 Once connected, cd in /home/helphp/utils and launch :
 
-`php install_db_and_modules.php /HOMEOFYOURINSTANCE` (normaly /home/default if you'r still with the default instance example of composer branch).
+```
+php install_db_and_modules.php /HOMEOFYOURINSTANCE
+```
+(normaly /home/default if you'r still with the default instance example of composer branch).
+
 
 it should launch the master slave replication et install the user db in mymaria-central. 
 
@@ -125,7 +135,7 @@ Still as your docker user, first down the previous compose if it's still up :
 then launch the new composition :
 `docker compose -f compose-3-servers.yaml up`
 
-go to your navigator and type your server ip adress (localhost or 127.0.0.1 if it's your computer) + "/installscript.php" to start helphp instance install or + ":8001" to go to phpmyadmin.
+go to your navigator and type your server ip adress (localhost or 127.0.0.1 if it's your computer) to start helphp instance install or + ":8001" to go to phpmyadmin.
 
 You should get something running fluently, with nearly no difference and that can still run on only one machine.
 
