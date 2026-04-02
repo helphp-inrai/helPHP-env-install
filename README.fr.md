@@ -33,11 +33,13 @@ apt install git
 
 - 2 clonez cette branche : 
 
-`git clone -b Docker https://github.com/INRAI-helPHP/helPHP-env-install`
+```
+git clone -b Docker https://github.com/INRAI-helPHP/helPHP-env-install
+```
 
 - 3 lancez le premier script d'installation pour installer correctement docker avec un utilisateur dédié (sélectionnez USER et PASSWORD bien sûr): 
 ```
-cd helphp-env-install
+cd helPHP-env-install
 chmod 777 *-*.sh
 ./1-install-docker.sh USER PASSWORD
 ```
