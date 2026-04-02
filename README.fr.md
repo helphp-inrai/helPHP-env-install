@@ -128,7 +128,7 @@ docker run --detach --rm --name ${containername} \
 -p 80:80 \
 -v /mnt/replicated/${containername}/confs:/opt/configs \
 -v /mnt/distreplic/logs/${containername}:/var/log \
--v /mnt/distreplic/custhome/${containername}:/home/default \
+-v /mnt/distreplic/custhome/${containername}/default:/home/default \
 -v /mnt/distreplic/tmps/${containername}:/tmp \
 -v /mnt/replicated/helphp:/home/helphp \
 helphp/instance:latest
