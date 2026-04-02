@@ -41,7 +41,9 @@ In the previous branch for docker, we just launch a dedicated HelPHP instance ex
 And also, this, time we want  perhaps to add Libretranslate, and PhpMyadmin, why not ?
 
 - 1 git clone this branch somewhere :
-`git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install`
+```
+git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install
+```
 
 you'll find inside the previous files of the Docker branch and some usefull new files...
 
