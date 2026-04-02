@@ -23,7 +23,7 @@ apt install git
 
 - 2 clone this branch : 
 ```
-git clone -b LAMP https://github.com/INRAI-helPHP/helPHP-env-install`
+git clone -b LAMP https://github.com/INRAI-helPHP/helPHP-env-install
 ```
 - 3 launch the first install script to get Apache and PHP-FPM 8.5 : 
 ```
@@ -36,13 +36,14 @@ chmod 777 *-*.sh
 
 - 5 Do we need a Mysql server on the same server ? 
 If yes, to install MariaDB (a great mysql server), go back to helphp-env-install Choose a correct password for your mysql root/admin user folder and run :
-
-`./2-install-mariadb.sh YOUR_PASSWORD` 
-
+```
+./2-install-mariadb.sh YOUR_PASSWORD 
+```
 - 6 Do you need PhpMyAdmin ?
 still in helphp-env-install launch :
-
-`./3-install-pma.sh` 
+```
+./3-install-pma.sh
+```
 
 during the installation, select "apache" as web server and confirm that you want to configure phpmyadmin with dbconfig-common. You can also select a pass for phpmyadmin db or let it random.
 
@@ -50,16 +51,19 @@ After that in the adress bar of your navigator you can type the ip of your serve
 and access to phpmyadmin and inspect your Mariadb server with user root and your password specified at step 5.
 
 - 7 Do you need ffmpeg for video encoding ?
-
-`./4-install-ffmpeg.sh`
+```
+./4-install-ffmpeg.sh
+```
 
 - 8 Do you need Redis (for fast session and process following mutualisation ?).
-
-`./5-install-redis.sh`
-
+```
+./5-install-redis.sh`
+```
 - 9 Clone HelPHP and its instance : 
 go to the folder where you want to install HelPHP libs and clone it there :
-`git clone https://github.com/INRAI-helPHP/helPHP`
+```
+git clone https://github.com/INRAI-helPHP/helPHP
+```
 
 then we'll clone the instance in default apache served directory :
 ```
