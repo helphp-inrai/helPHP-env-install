@@ -23,7 +23,9 @@ Donc nous aurons besoin d'une petite pile "composer" avec trois serveurs MySQL p
 Dans la branche précédente pour [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), nous avons fini une pile avec un serveur MySQL, nous devrions utiliser la même pile et faire quelques changements.
 
 - 1 git clone cette branche quelque part :
-`git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install`
+```
+git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
+```
 
 vous trouverez à l'intérieur les fichiers précédents de la branche Composer et quelques nouveaux fichiers utiles...
 
@@ -85,11 +87,12 @@ PhPmyadmin s'occupera des 3 serveurs MySQL maintenant.
 
 - 5 Configuration HelPHP 
 
-Deux cas là : 
+Deux cas possibles : 
 
-vous n'avez pas encore installé HelPHP ? , donc quand vous lancerez your_ip/+installscript.php vous pourrez remplir le formulaire et le lancer...
+1 - Vous n'avez pas encore installé HelPHP ? 
+Donc quand avec votre navigateur vous accédez à votre serveur via son ip/domaine (ou localhost ou 127.0.0.1 si vous être en local) vous pourrez remplir le formulaire d'installation ...
 
-C'est déjà installé ? 
+2 - l'instance est déjà installée ? 
 allez dans le dossier config de votre instance et éditez db.php pour modifier quelques constantes :
 ```
     const MASTER_SLAVE_MODE = true;
@@ -107,8 +110,8 @@ allez dans le dossier config de votre instance et éditez db.php pour modifier q
 bien sûr changez YOURUSER, YOURDB, YOURPASSWORD...
 
 Puis ouvrez une session bash dans votre conteneur d'instance en cours d'exécution :
-
-'docker exec -it yourcontainerid bash' (tapez avant `docker ps` pour obtenir votre id de conteneur).
+(tapez avant `docker ps` pour obtenir votre id de conteneur).
+'docker exec -it yourcontainerid bash' 
 
 Une fois connecté, cd dans /home/helphp/utils et lancez :
 
@@ -125,16 +128,16 @@ Toujours en tant que votre utilisateur docker, d'abord arrêtez le compose préc
 puis lancez la nouvelle composition :
 `docker compose -f compose-3-servers.yaml up`
 
-allez dans votre navigateur et tapez l'adresse ip de votre serveur (localhost ou 127.0.0.1 si c'est votre ordinateur) + "/installscript.php" pour commencer l'installation de l'instance helphp ou + ":8001" pour aller à phpmyadmin.
+allez dans votre navigateur et tapez l'adresse ip de votre serveur (localhost ou 127.0.0.1 si c'est votre ordinateur) pour commencer l'installation de l'instance helphp (si ce n'est pas déjà fait) ou ajoutez le port ":8001" pour accéder à phpmyadmin.
 
-Vous devriez obtenir quelque chose qui fonctionne couramment, avec presque aucune différence et qui peut encore fonctionner sur seulement une machine.
+Vous devriez obtenir quelque chose qui fonctionne de manière fluide, avec presque aucune différence et qui peut encore fonctionner sur seulement une machine.
 
-Et vous pouvez revenir à la compose.yaml précédente selon vos besoins.
+Et vous pouvez revenir au fichier compose.yaml précédent selon vos besoins.
 
 Évolution de notre pile :
 
 ![composer-multi.png](composer-multi.png)
 
-Maintenant si vous voulez expérimenter avec le stockage de fichiers et la communication réseau dans un cluster/cloud vous aurez besoin d'au moins 2 serveurs ou 2 VM pour créer un docker [Swarm](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Swarm) (3 si vous voulez jouer avec Kubernetes, mais Swarm et 2 serveurs sont suffisants pour nos besoins). 
+Maintenant si vous voulez expérimenter avec un stockage de fichiers partagé et la communication réseau dans un cluster/cloud pour compléter les autres besoins en haute disponibilité, vous aurez besoin d'au moins 2 serveurs ou 2 VM pour créer un docker [Swarm](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Swarm) (3 si vous voulez essayer avec Kubernetes, mais pour docker Swarm 2 serveurs sont suffisants). 
 
 Si vous avez seulement un seul PC pour l'expérimentation, jetez un œil sur VirtualBox, VMWare, Promox etc... il y a des tonnes de bons logiciels de virtualisation.
