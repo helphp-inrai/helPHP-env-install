@@ -94,7 +94,7 @@ so when you'll visit your_ip in your browser you'll be able to the installscript
 
 2 - It's already installed ? 
 You must make some modification configuration
-got to your instance config folder and edit db.php to modify some constants :
+got to your instance config folder (normaly in a path like this : /mnt/distreplic/custhome/YOUR.H.C.NAME/default/config") and edit db.php to modify some constants :
 ```
     const MASTER_SLAVE_MODE = true;
     const DB_SLAVE_HOST = 'mymaria-slave';
