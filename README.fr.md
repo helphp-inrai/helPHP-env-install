@@ -93,7 +93,7 @@ Deux cas possibles :
 Donc quand avec votre navigateur vous accédez à votre serveur via son ip/domaine (ou localhost ou 127.0.0.1 si vous être en local) vous pourrez remplir le formulaire d'installation ...
 
 2 - l'instance est déjà installée ? 
-allez dans le dossier config de votre instance et éditez db.php pour modifier quelques constantes :
+allez dans le dossier config (normalement dans le path ressemblant à "/mnt/distreplic/custhome/YOUR.H.C.NAME/default/config") de votre instance et éditez db.php pour modifier quelques constantes :
 ```
     const MASTER_SLAVE_MODE = true;
     const DB_SLAVE_HOST = 'mymaria-slave';
