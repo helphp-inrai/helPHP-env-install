@@ -135,9 +135,9 @@ But this time, it's Gluster time !
 First go the second server (cluster-2) connect as root and clone again (if it's not already done) this repository and launch first script :
 
 ```
-git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-env-install
-cd helPHP-env-install
-./1-1-gluster-B.sh
+git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-env-install && \
+cd helPHP-env-install && \
+bash 1-1-gluster-B.sh
 ```
 - 1-2 : Launching the replication 
 
