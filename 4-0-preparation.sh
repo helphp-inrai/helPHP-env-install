@@ -19,6 +19,5 @@ cp mainstack.yml /mnt/replicated/
 chmod -R 777 /mnt/replicated/libretranslate
 
 git clone https://github.com/INRAI-helPHP/helPHP.git /mnt/replicated/helphp
-chown -R www-data:www-data /mnt/replicated/helphp
 
 echo "Folders and HelPHP libs ready"
