@@ -190,11 +190,11 @@ As soon as our docker user is created, will continue with it, so `su docker_user
 
 On first server, with your docker user launch `./3-0-swarm-A.sh` and indicate the internal IP of this server (or the unique ip you have if you have only one network card)
 
-Your first server will become the first swarm manager, and in /mnt/replicated you'll find a new folder with tokens to make new server join the swarm as worker or manager.
+Your first server will become the first swarm manager, and in /mnt/replicated/ you'll find a new folder (swarm-tokens) with commands to make new servers join the swarm as worker or manager.
 
-It's a swarm manager but also a node in the swarm, so it will host services too, and the script give him a label : "mariadb-master" , this label will indicate on which server will be hosted and launch mariadb as master and its SQL data. of course, in the next step the second server will be labelled as slave. 
+The first server is now a swarm manager but also a node in the swarm, so it will host services too, and the script give him a label : "mariadb-master" , this label will indicate on which server will be hosted and launch mariadb as master and its SQL data. of course, in the next step the second server will be labeled as slave. 
 
-In case of crash, helPHP will rely on the surviving server (in general, but you can force the unique SQL survivor as main server in you instance config/main.php file if the automation is not enough).
+In case of crash, helPHP will rely on the surviving server (in general, but you can force the unique SQL survivor as main server in you instance config/db.php file if the automation is not enough).
 
 So when you'll repair your cluster, don't forget to add/update/change the labels depending the situation.
 

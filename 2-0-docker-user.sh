@@ -14,7 +14,7 @@ read -p "Enter the Docker username: " username
 read -p "Enter its password : " password
 
 ## creating docker user and preparing some folders
-useradd -ms /bin/bash -g users ${username} && chown -R ${username}:users /home/${username}
+useradd -ms /bin/bash -g users ${username} && chown -R ${username}:users /home/${username} /mnt
 echo "$username:$password" | chpasswd
 
 echo "$username:$password" | chpasswd

@@ -191,13 +191,13 @@ Dès que notre utilisateur docker est créé, nous continuerons avec lui, donc `
 
 Sur le premier serveur, avec votre utilisateur docker lancez `./3-0-swarm-A.sh` et indiquez l'IP interne de ce serveur (ou l'ip unique que vous avez si vous avez seulement une carte réseau)
 
-Votre premier serveur deviendra le premier gestionnaire swarm, et dans /mnt/replicated vous trouverez un nouveau dossier avec des tokens pour faire rejoindre de nouveaux serveurs au swarm en tant que worker ou gestionnaire.
+Votre premier serveur deviendra le premier gestionnaire swarm, et dans le dossier /mnt/replicated, vous trouverez un nouveau dossier "swarm-tokens" avec les commandes pour que de nouveaux serveurs rejoigne le swarm en tant que "worker" ou "manager".
 
-C'est un gestionnaire swarm mais aussi un nœud dans le swarm, donc il hébergera aussi des services, et le script lui donne une étiquette : "mariadb-master" , cette étiquette indiquera sur quel serveur sera hébergé et lancé mariadb en tant que master et ses données SQL. Bien sûr, à l'étape suivante le deuxième serveur sera étiqueté comme slave. 
+C'est un gestionnaire swarm mais aussi un nœud dans le swarm, donc il hébergera aussi des services, et le script lui donne un premier label : "mariadb-master" , ce label indiquera sur quel serveur sera hébergé et lancé mariadb en tant que master et ses données SQL. Bien sûr, à l'étape suivante le deuxième serveur sera étiqueté comme "slave". 
 
-En cas de crash, helPHP s'appuiera sur le serveur survivant (en général, mais vous pouvez forcer le serveur SQL survivant unique comme serveur principal dans votre fichier instance config/main.php si l'automatisation n'est pas suffisante).
+En cas de crash, helPHP s'appuiera sur le serveur survivant (vous pouvez forcer le serveur SQL survivant comme serveur principal dans votre fichier d'instance config/db.php si l'automatisation n'est pas suffisante).
 
-Donc quand vous réparerez votre cluster, n'oubliez pas d'ajouter/mettre à jour/changer les étiquettes selon la situation.
+Donc quand vous réparerez votre cluster, n'oubliez pas d'ajouter/mettre à jour/changer les labels selon la situation.
 
 - 3-1 rejoindre le swarm :
 
