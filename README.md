@@ -78,7 +78,7 @@ First connect to both servers/VM and sudo as root, cd to any folder you want and
 ```
 apt install git -y && git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-env-install \
 && cd helPHP-env-install \
-&& chmod 777 *.sh \
+&& chmod 777 *.sh && chmod -R 777 confs/helphp-instance \
 && bash 0-0-background-sh
 ```
 
