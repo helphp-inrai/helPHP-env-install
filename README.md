@@ -144,6 +144,15 @@ bash 1-1-gluster-B.sh
 Second, connect as root and cd to helphp-env-install on first server and :
 
 `./1-2-gluster-A.sh`
+At this stage it may be that gluster is not correctly initialized on some versions of debian.
+In that case, we have to restart/clean gluster.
+On all servers:
+```
+sudo systemctl stop glusterd
+sudo rm -rf /var/lib/glusterd
+sudo systemctl start glusterd
+```
+then restart the script `bash 1-2-gluster-A.sh`
 
 - 1-3 : Fixing the new volumes in fstab 
 

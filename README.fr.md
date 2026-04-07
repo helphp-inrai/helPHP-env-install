@@ -143,7 +143,17 @@ bash 1-1-gluster-B.sh
 
 Deuxièmement, connectez-vous en root et cd dans helphp-env-install sur le premier serveur et :
 
-`./1-2-gluster-A.sh`
+`bash 1-2-gluster-A.sh`
+
+A cette étape il se peut que gluster s'initialise mal sur certaines versions de debian.
+Dans ce cas là, il faut relancer gluster.
+Sur tous les serveurs faîtes :
+```
+sudo systemctl stop glusterd
+sudo rm -rf /var/lib/glusterd
+sudo systemctl start glusterd
+```
+puis relancer le script `bash 1-2-gluster-A.sh`
 
 - 1-3 : Fixer les nouveaux volumes dans fstab 
 
