@@ -76,9 +76,10 @@ it's ALIVE !!! ALIVE !!! (huuuh sorry...)
 First connect to both servers/VM and sudo as root, cd to any folder you want and :
 
 ```
-apt install git -y && git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-env-install
-cd helPHP-env-install
-./0-0-background-sh
+apt install git -y && git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-env-install \
+&& cd helPHP-env-install \
+&& chmod 777 *.sh \
+&& bash 0-0-background-sh
 ```
 
 - 0-1 : Vlan setup 
@@ -90,7 +91,7 @@ So first we must discover the name of our network card :
 
 `ip a ` will display the current network configuration with one card already connected with the ip you're using for terminal ssh connection and a secondary, please note its name and launch 
 
-`/0-1-vlan.sh`
+`./0-1-vlan.sh`
 
 answer the first question with the name you've just note, and at the second enter an ip compatible with your Vlan or network, for example 168.168.2.1 on the first server and .2 on the second.
 
