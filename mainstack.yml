@@ -123,13 +123,9 @@ services:
         condition: on-failure
       replicas: 1
       labels :
-        - "traefik.enable=true"
-        - "traefik.docker.network=traefik-vpn"
-        - "traefik.http.routers.pma.rule=HostRegexp(`.+`) && PathPrefix(`/pma`)"
-        - "traefik.http.routers.pma.entrypoints=web"
-#        - "traefik.http.routers.pma.entrypoints=websecure"
-#        - "traefik.http.routers.pma.tls.certresolver=letsencryptresolver"
-        - "traefik.http.services.pma.loadbalancer.server.port=80"
+        - "traefik.enable=false"
+    ports:
+      - "8001:80"
     volumes:
       - /mnt/replicated/pma/config.inc.php:/etc/phpmyadmin/config.inc.php
     networks:
