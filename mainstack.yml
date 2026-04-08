@@ -143,7 +143,7 @@ services:
       - MARIADB_ROOT_PASSWORD=YOURPASSWORD
       - CLUSTER=BOOT
     volumes:
-      - /mnt/replicated/maria-master/my-init.cnf:/etc/mysql/my-init.cnf
+      - /mnt/replicated/maria-master/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro
       - /mnt/mysql-db/logs/maria-master:/var/log
       - /mnt/mysql-db/mysql/maria-master:/var/lib/mysql
     networks:
@@ -161,7 +161,7 @@ services:
       - MARIADB_ROOT_PASSWORD=YOURPASSWORD
       - CLUSTER=BOOT
     volumes:
-      - /mnt/replicated/maria-slave/my-init.cnf:/etc/mysql/my-init.cnf
+      - /mnt/replicated/maria-slave/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro
       - /mnt/mysql-db/logs/maria-slave:/var/log
       - /mnt/mysql-db/mysql/maria-slave:/var/lib/mysql
     networks:
