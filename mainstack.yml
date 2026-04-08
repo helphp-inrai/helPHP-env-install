@@ -55,7 +55,7 @@ services:
       # for traefik dashboard  
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.dashboard.rule=PathPrefix(`/traefik`)"
+        - "traefik.http.routers.dashboard.rule=HostRegexp(`.+`) && PathPrefix(`/traefik`)"
         - "traefik.http.routers.dashboard.entrypoints=web"
         #- "traefik.http.routers.dashboard.entrypoints=websecure"
         #- "traefik.http.routers.dashboard.tls.certresolver=letsencryptresolver"
@@ -125,7 +125,7 @@ services:
       labels :
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-vpn"
-        - "traefik.http.routers.pma.rule=PathPrefix(`/pma`)"
+        - "traefik.http.routers.pma.rule=HostRegexp(`.+`) && PathPrefix(`/pma`)"
         - "traefik.http.routers.pma.entrypoints=web"
 #        - "traefik.http.routers.pma.entrypoints=websecure"
 #        - "traefik.http.routers.pma.tls.certresolver=letsencryptresolver"
