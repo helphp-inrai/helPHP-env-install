@@ -15,7 +15,7 @@ services:
 
   mymaria:
     restart: always
-    image: mariadb:11.8.3
+    image: mariadb:12.2.2
     container_name: mymariadb
     volumes:
       #- "./mymaria/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro"
