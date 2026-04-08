@@ -132,7 +132,7 @@ services:
       - traefik
 #***********************************************************maria-master*******************************************************
   maria-master:
-    image: mariadb:11.8.3
+    image: mariadb:12.2.2
     deploy:
       replicas: 1
       placement:
@@ -150,7 +150,7 @@ services:
       - traefik
 #***********************************************************maria-slave*******************************************************
   maria-slave:
-    image: mariadb:11.8.3
+    image: mariadb:12.2.2
     deploy:
       replicas: 1
       placement:
