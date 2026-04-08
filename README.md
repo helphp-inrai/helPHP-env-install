@@ -243,6 +243,8 @@ the rules for HelPHP container and phpmyadmin is simple, they will answer as soo
 
 The stack is not totaly finished and perfect, you should buy a domain, or create a local dns with a fake domain to make some round robin dns redirection to both ips, add https support etc. 
 
+Libretranslate is quite heavy, so you should disable it if your hardware configuration is light.
+
 Anyway, we can already test it like that : 
 
 `docker stack deploy -c /mnt/replicated/mainstack.yml hphp`

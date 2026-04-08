@@ -244,6 +244,8 @@ les règles pour le conteneur helPHP et phpmyadmin sont simples, ils répondront
 
 La pile n'est pas totalement finie et parfaite, vous devriez acheter un domaine, ou créer un dns local avec un faux domaine pour faire quelques redirections dns "round robin" vers les deux ips, et ajouter le support https etc. 
 
+Libretranslate est assez lourd, vous devriez donc le désactiver si votre configuration matérielle est légère.
+
 Quoi qu'il en soit, nous pouvons déjà le tester comme cela : 
 
 `docker stack deploy -c /mnt/replicated/mainstack.yml hphp`

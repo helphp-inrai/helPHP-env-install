@@ -6,17 +6,25 @@ services:
 
 #***********************************************************traefik*******************************************************
   traefik:
-    image:  traefik:2.6
+    image:  traefik:v3.6.7
     command:
        - "--api.dashboard=false"
-       - "--providers.docker.endpoint=unix:///var/run/docker.sock"
-       - "--providers.docker.swarmMode=true"
+       - "--api.insecure=false"
+       - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
+       - "--providers.swarm.watch=true"
+       - "--providers.swarm.network=traefik_public"
+       - "--providers.docker"
        - "--providers.docker.exposedbydefault=false"
-       - "--providers.docker.network=traefik"
+       - "--providers.docker.network=traefik-public"
+       - "--providers.swarm.watch=true"
        - "--entrypoints.web.address=:80"
-#       - "--entrypoints.websecure.address=:443"
        - "--entrypoints.web.forwardedHeaders.insecure=true"
+# to get https and http redirection to https, uncomment lines in all traefik section
+#       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+#       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+#       - "--entrypoints.websecure.address=:443"
 #       - "--entrypoints.websecure.forwardedHeaders.insecure=true"
+# httpchallenge is quite ok and easy, but in production you should prefer a dns challenge provider
 #       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
 #       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=websecure"
 #       - "--certificatesresolvers.letsencryptresolver.acme.email=myemail@myemail.com"
@@ -37,19 +45,23 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 1000M
       mode: global
       update_config:
         parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
-#      labels:
-#global https redirect
-#        - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-#        - "traefik.http.routers.http-catchall.entrypoints=web"
-#        - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
-#        - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      # for traefik dashboard  
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.dashboard.rule=PathPrefix(`/traefik`)"
+        - "traefik.http.routers.dashboard.entrypoints=web"
+        #- "traefik.http.routers.dashboard.entrypoints=websecure"
+        #- "traefik.http.routers.dashboard.tls.certresolver=letsencryptresolver"
+        #- "traefik.http.routers.dashboard.tls=true"
+        - "traefik.http.services.dashboard.loadbalancer.server.port=8080"
+
 #**********************************************************HelPHP*******************************************************
   MYCONTAINER:
     image: helphp/instance:latest
@@ -63,8 +75,9 @@ services:
           memory: 500M
       labels :
         - "traefik.enable=true"
-        - "traefik.http.routers.helphp.rule=hostregexp(`{host:.+}`)"
-#        - "traefik.http.routers.helphp.entrypoints=web"
+        - "traefik.http.routers.helphp.rule=HostRegexp(`.+`)"
+        - "traefik.http.routers.helphp.entrypoints=web"
+#        - "traefik.http.routers.helphp.entrypoints=websecure"
 #        - "traefik.http.routers.helphp.tls.certresolver=letsencryptresolver"
         - "traefik.http.services.helphp.loadbalancer.server.port=80"
     volumes:
@@ -92,6 +105,8 @@ services:
         constraints: [node.role == manager]
       restart_policy:
         condition: on-failure
+      labels :
+        - "traefik.enable=false"
     volumes:
       - /mnt/replicated/redis:/data
     networks:
@@ -111,8 +126,8 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-vpn"
         - "traefik.http.routers.pma.rule=PathPrefix(`/pma`)"
-#        - "traefik.http.routers.pma.entrypoints=websecure"
         - "traefik.http.routers.pma.entrypoints=web"
+#        - "traefik.http.routers.pma.entrypoints=websecure"
 #        - "traefik.http.routers.pma.tls.certresolver=letsencryptresolver"
         - "traefik.http.services.pma.loadbalancer.server.port=80"
     volumes:
@@ -126,6 +141,8 @@ services:
       replicas: 1
       placement:
         constraints: [node.labels.mariadb-master == true ]
+      labels :
+        - "traefik.enable=false"
     environment:
       - MARIADB_ROOT_PASSWORD=YOURPASSWORD
       - CLUSTER=BOOT
@@ -142,6 +159,8 @@ services:
       replicas: 1
       placement:
         constraints: [node.labels.mariadb-slave == true ]
+      labels :
+        - "traefik.enable=false"
     environment:
       - MARIADB_ROOT_PASSWORD=YOURPASSWORD
       - CLUSTER=BOOT
@@ -153,7 +172,7 @@ services:
       - traefik
 #***********************************************************libretranslate*******************************************************
   libretranslate:
-    image: libretranslate/libretranslate:latest
+    image: libretranslate/libretranslate:v1.7.3
     hostname: libretranslate
     command:
       - "--update-models"
@@ -167,7 +186,15 @@ services:
       replicas: 1
       resources:
         limits:
-          memory: 500M
+          memory: 1000M
+      labels :
+        - "traefik.enable=true"
+        - "traefik.http.routers.lbt.rule=PathPrefix(`/lbt`)"
+        - "traefik.http.routers.lbt.entrypoints=web"
+        #- "traefik.http.routers.lbt.entrypoints=websecure"
+        #- "traefik.http.routers.lbt.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.lbt.loadbalancer.server.port=5000"
+
     networks:
       - traefik
 #***********************************************************networks*******************************************************
