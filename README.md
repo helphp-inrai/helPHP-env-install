@@ -28,8 +28,8 @@ PLease select the branch corresponding to your hardware / cloud situation and fo
 - [One-line-install](https://github.com/INRAI-helPHP/helPHP-env-install/tree/one_line_install) : No time, or need to run immediatly HelPHP? This branch is for you!
 - [LAMP](https://github.com/INRAI-helPHP/helPHP-env-install/tree/LAMP) : the classic Linux / Apache / MySQL / PHP install ... directly on an empty server (debian family)
 - [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker) : get or build a docker container for HelPHP
-- [Composer solo](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer) : install with docker composer with a single mysql server
-- [Composer with master slave (and optionnaly centralized user ) mysql server](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer-multi-mysql)
+- [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) : install with docker composer with a single mysql server
+- [Compose with master slave (and optionnaly centralized user ) mysql server](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose-multi-mysql)
 - [Docker swarm](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Swarm) version with HA on two servers
 
 ## After installation or your environment :
