@@ -2,8 +2,8 @@
 
 # Introduction
 
-Après l'installation [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker), et l'installation [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer) qui fonctionnent sur seulement un ordinateur, nous devrions étudier un environnement cloud/cluster enfin.
-Mais avant cela il y a un cas spécial que nous devons vérifier avec Composer : 
+Après l'installation [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker), et l'installation [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) qui fonctionnent sur seulement un ordinateur, nous devrions étudier un environnement cloud/cluster enfin.
+Mais avant cela il y a un cas spécial que nous devons vérifier avec Compose : 
 Une pile composer avec plusieurs serveurs mysql. 
 
 Pourquoi ?
@@ -20,14 +20,14 @@ La DB centralisée (DB_CENTRAL), est utilisée quand vous construisez plusieurs 
 Donc nous aurons besoin d'une petite pile "composer" avec trois serveurs MySQL pour faire quelques tests. (si tout va bien, cela devrait fonctionner au minimum comme la solution serveur MySQL unique, avec de vrais serveurs vous devriez obtenir 2x plus de vitesse sur les opérations de lecture).
 
 ## Continuons...
-Dans la branche précédente pour [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), nous avons fini une pile avec un serveur MySQL, nous devrions utiliser la même pile et faire quelques changements.
+Dans la branche précédente pour [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose), nous avons fini une pile avec un serveur MySQL, nous devrions utiliser la même pile et faire quelques changements.
 
 - 1 git clone cette branche quelque part :
 ```
-git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
+git clone -b Compose-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
 ```
 
-vous trouverez à l'intérieur les fichiers précédents de la branche Composer et quelques nouveaux fichiers utiles...
+vous trouverez à l'intérieur les fichiers précédents de la branche Compose et quelques nouveaux fichiers utiles...
 
 - 2 ajouter quelques dossiers :
 

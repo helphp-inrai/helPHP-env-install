@@ -2,8 +2,8 @@
 
 # Introduction
 
-After the [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker) installation, and the [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer) installation that are running on only one computer, we should study one cloud/cluster environment at last.
-But before that there is a special case we must check with Composer : 
+After the [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker) installation, and the [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) installation that are running on only one computer, we should study one cloud/cluster environment at last.
+But before that there is a special case we must check with Compose : 
 A composer stack with multiple mysql server. 
 
 Why?
@@ -20,14 +20,14 @@ The centralized DB (DB_CENTRAL), is used when you're building multiple services/
 So we'll need a little composer stack with tree MySQL servers to make some tests. (if all is fine, it should work at minimum like the single MySQL server solution, with real servers you should get 2x speed up on reading operations).
 
 ## Let's continue...
-In the previous branch for [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), we have finished a stack with a MySQL server, we should use the same stack and make some changes.
+In the previous branch for [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose), we have finished a stack with a MySQL server, we should use the same stack and make some changes.
 
 - 1 git clone this branch somewhere :
 ```
-git clone -b Composer-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
+git clone -b Compose-multi-mysql https://github.com/INRAI-helPHP/helPHP-env-install
 ```
 
-you'll find inside the previous files of the Composer branch and some usefull new files...
+you'll find inside the previous files of the Compose branch and some usefull new files...
 
 - 2 add some folders :
 
