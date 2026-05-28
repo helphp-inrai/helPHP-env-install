@@ -6,7 +6,7 @@ if you have a server or a VM running a recent Debian, Ubuntu or Mint like linux 
 
 ```
 apt install -y git && \
-git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
+git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install && \
 bash helPHP-env-install/one_line_install.sh
 ```
 it will ask for a username and password to create a user dedicated to docker and to launch HelPHP services, a name for your HelPHP container, and finaly the root password for your SQL MariaDB server.
@@ -23,4 +23,4 @@ you can edit you HelPHP instance in /mnt/distreplic/custhome/NAME_OF_YOUR_CONTAI
 you can tail the logs in /mnt/distreplic/logs/NAME_OF_YOUR_CONTAINER/...
 and your HelPHP libs repository is in /mnt/replicated/helphp
 
-interested in what was done on your server ? Please check [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer) branch.
+interested in what was done on your server ? Please check [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) branch.

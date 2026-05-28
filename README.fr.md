@@ -6,7 +6,7 @@ Si vous avez un serveur ou une VM exécutant un Linux récent comme Debian, Ubun
 
 ```
 apt install -y git && \
-git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
+git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install && \
 bash helPHP-env-install/one_line_install.sh
 ```
 
@@ -24,4 +24,4 @@ Vous pouvez éditer votre instance HelPHP dans /mnt/distreplic/custhome/NAME_OF_
 Vous pouvez suivre les logs dans /mnt/distreplic/logs/NAME_OF_YOUR_CONTAINER/...
 et votre dépôt de libs HelPHP est dans /mnt/replicated/helphp
 
-intéressé par ce qui a été fait sur votre serveur ? Veuillez vérifier la branche [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer).
+intéressé par ce qui a été fait sur votre serveur ? Veuillez vérifier la branche [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose).
