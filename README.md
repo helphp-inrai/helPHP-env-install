@@ -165,7 +165,7 @@ Ok, but if you want to manage your DB servers with docker ? of launch other cont
 
 Will it be difficult to manage ? 
 
-No because you can use [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer).
+No because you can use [Docker Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose).
 
 
 
