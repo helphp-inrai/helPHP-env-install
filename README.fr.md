@@ -10,7 +10,7 @@ Copiez-collez simplement cette ligne dans votre terminal serveur ou VM (fonction
 
 ```
 apt install -y git && \
-git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
+git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install && \
 bash helPHP-env-install/one_line_install.sh
 ```
 - 2 : vous avez 20 minutes ? 
@@ -26,7 +26,7 @@ Donc après avoir utilisé le script 2-add-container.sh, nous continuerons avec 
 
 ## Pourquoi composer ?
 
-Vous êtes développeur ? ou vous avez juste un serveur sur lequel vous commencez à avoir plusieurs services et vous voulez contrôler leurs ressources ? Composer est un bon choix pour garder les choses simples avec de bonnes performances...
+Vous êtes développeur ? ou vous avez juste un serveur sur lequel vous commencez à avoir plusieurs services et vous voulez contrôler leurs ressources ? Compose est un bon choix pour garder les choses simples avec de bonnes performances...
 
 Comme il est déjà installé avec docker, nous pouvons directement "composer" une "pile" de services, et la lancer/l'arrêter en une commande.
 
@@ -41,7 +41,7 @@ Dans la branche précédente pour docker, nous avons juste lancé un conteneur d
 Et aussi, cette fois, nous voulons peut-être ajouter Libretranslate, et PhpMyadmin, pourquoi pas ?
 
 - 1 git clone cette branche quelque part :
-`git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install`
+`git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install`
 
 vous trouverez à l'intérieur les fichiers précédents de la branche Docker et quelques nouveaux fichiers utiles...
 
@@ -129,4 +129,4 @@ Les données de longue durée sont souvent stockées dans un DB de type SQL et c
 
 heureusement, avec composer nous pouvons facilement expérimenter ces mécanismes de réplication. 
 
-Jetez un œil à la branche [Composer multi MySQL](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer-multi-mysql).
+Jetez un œil à la branche [Compose multi MySQL](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose-multi-mysql).
