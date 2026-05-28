@@ -78,7 +78,7 @@ chown www-data:www-data data
 the /var/www/data folder will be used to store data manipulated by helPHP filesystem .
 Take care to check your instance config then in your navigator adress bar type your server ip and you should get the HelPHP final installer.
 
-if you want autotranslation for UI and content, you should check the [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer) version, or install libretranslate as a docker container but not directly on same server instance as its really consuming ressource.
+if you want autotranslation for UI and content, you should check the [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) version, or install libretranslate as a docker container but not directly on same server instance as its really consuming ressource.
 
 
 

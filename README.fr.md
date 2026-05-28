@@ -73,4 +73,4 @@ chown www-data:www-data data
 le dossier /var/www/data sera utilisé pour stocker les données manipulées par le système de fichiers helPHP .
 Prenez soin de vérifier votre configuration d'instance puis dans la barre d'adresse de votre navigateur tapez l'ip de votre serveur et vous devriez voir s'afficher l'installateur final HelPHP.
 
-si vous voulez une autotranslation pour l'UI et le contenu, vous devriez vérifier la version [Composer](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer), ou installer libretranslate comme un conteneur docker mais pas directement sur la même instance de serveur car c'est vraiment consommateur de ressources.
+si vous voulez une autotranslation pour l'UI et le contenu, vous devriez vérifier la version [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose), ou installer libretranslate comme un conteneur docker mais pas directement sur la même instance de serveur car c'est vraiment consommateur de ressources.
