@@ -10,28 +10,28 @@ Just copy paste this line in your server or VM terminal (worsk with recent Debia
 
 ```
 apt install -y git && \
-git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install && \
+git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install && \
 bash helPHP-env-install/one_line_install.sh
 ```
 - 2 : you have 20 mins to study that ? 
 
 please continue to read :
 
-Before starting with composer, you need to install docker and make some folders etc...
+Before starting with Compose, you need to install docker and make some folders etc...
 
 Please check this branch before : [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker) but don't launch the container.
 
 We'll keep the same files and scripts from this previous branch as it's the same base.
-So after using the script 2-add-container.sh please come back to this branch, we'll continue with composer ...
+So after using the script 2-add-container.sh please come back to this branch, we'll continue with Compose ...
 
-## Why composer ?
+## Why Compose ?
 
-You are a developper ? or you just have one server on which you start to have multiple services and you want to control their ressources ? Composer is a good choice to keep things simple with good performances...
+You are a developper ? or you just have one server on which you start to have multiple services and you want to control their ressources ? Compose is a good choice to keep things simple with good performances...
 
 As it's already installed with docker, we can directly compose a "stack" of services, and launch it/stop it in one command. 
 
 ## Docker desktop under windows consideration :
-You can use the composer stack with Docker desktop under windows, but to avoid issue, you should create all folders inside one folder, and inside this one put your yaml file. Like this you will be able to use relative paths (as writing absolute path can be difficult under windows).
+You can use the Compose stack with Docker desktop under windows, but to avoid issue, you should create all folders inside one folder, and inside this one put your yaml file. Like this you will be able to use relative paths (as writing absolute path can be difficult under windows).
 
 Some filesystem operation are really slow under window, like calculate free disk space, or occupied space for a folder etc... We recommend to only use it for local dev.
 
@@ -42,7 +42,7 @@ And also, this, time we want  perhaps to add Libretranslate, and PhpMyadmin, why
 
 - 1 git clone this branch somewhere :
 ```
-git clone -b Composer https://github.com/INRAI-helPHP/helPHP-env-install
+git clone -b Compose https://github.com/INRAI-helPHP/helPHP-env-install
 ```
 
 you'll find inside the previous files of the Docker branch and some usefull new files...
@@ -88,7 +88,7 @@ With nano or any text editor, edit /mnt/replicated/compose.yaml.
 
 Yes we've already made the job ! And you have very few things to do :
 
-a composer stack is divided in services, the first one is corresponding exactly to the docker run we've done in the "Docker" branch, with same volume, same port, so you have to replace 
+a Compose stack is divided in services, the first one is corresponding exactly to the docker run we've done in the "Docker" branch, with same volume, same port, so you have to replace 
 "YOUR.H.C.NAME" by the name you've given when you've launch the script 2-add-container.sh.
 
 The second service is your first mysql server, and it will need a root password, so replace "YOURPASSWORD" by a choosen one !
@@ -121,7 +121,7 @@ go to your navigator and type your server ip adress (localhost or 127.0.0.1 if i
 
 And now we begin to have something that we can call "A simple stack" but with enough service division and little things done (like external config files in green in the schema bellow) for evolution ... 
 
-![composer.png](composer.png)
+![Compose.png](Compose.png)
 
 You'll always have to think about how you'll manage you cpu, storage (and type of storage!), bandwith and memory needs, and how it will grow ! 
 
@@ -130,9 +130,9 @@ So scalabity and also high availability must be at start in the project plan.
 From this point of view, the first thing targeted are long life data in database (short life data, like session, process following can be stored in mysql, but it's better to use a fast noSQL like redis for that, and those data are no essentials). 
 Long life data are often stored in a SQL server type DB and this kind of server offer cluster or master/slave replication mecanism. 
 
-hoppefuly with composer we can easily experiment that. 
+hoppefuly with Compose we can easily experiment that. 
 
-Take a look at the [Composer multi MySQL](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Composer-multi-mysql) branch. 
+Take a look at the [Compose multi MySQL](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose-multi-mysql) branch. 
 
 
 
