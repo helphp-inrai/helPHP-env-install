@@ -4,7 +4,7 @@
 
 After the [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker) installation, and the [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) installation that are running on only one computer, we should study one cloud/cluster environment at last.
 But before that there is a special case we must check with Compose : 
-A composer stack with multiple mysql server. 
+A compose stack with multiple mysql server. 
 
 Why?
 
@@ -17,7 +17,7 @@ For database, even if HelPHP offer a DB lib that support natively master/slave s
 
 The centralized DB (DB_CENTRAL), is used when you're building multiple services/applications but you want mutualized user/group accounts. (you can use an external auth system, but it's in general more secured to rely on an internal one, and it's not forbidden to auto establish the connection with the internal when connecting with the external... Double security ;) ).
 
-So we'll need a little composer stack with tree MySQL servers to make some tests. (if all is fine, it should work at minimum like the single MySQL server solution, with real servers you should get 2x speed up on reading operations).
+So we'll need a little compose stack with tree MySQL servers to make some tests. (if all is fine, it should work at minimum like the single MySQL server solution, with real servers you should get 2x speed up on reading operations).
 
 ## Let's continue...
 In the previous branch for [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose), we have finished a stack with a MySQL server, we should use the same stack and make some changes.
@@ -67,13 +67,13 @@ cp compose-3-servers.yaml /mnt/replicated/
 
 With nano or any text editor, edit /mnt/replicated/compose-3-servers.yaml.
 
-As for the composer stack you have to replace "YOUR.H.C.NAME" by the name you've given when you've launch the script 2-add-container.sh.
+As for the compose stack you have to replace "YOUR.H.C.NAME" by the name you've given when you've launch the script 2-add-container.sh.
 
 And to replace "YOURPASSWORD" by a choosen one for each MySQL server
 
 - 4 some info about this stack :
 
-you'll see if you compare with composer.yaml that there is few differences : 
+you'll see if you compare with compose.yaml that there is few differences : 
 the two first Mysql server boot as cluster and have a different my_init.cnf.
 The slave one is interesting :
 
@@ -121,7 +121,7 @@ Once connected, cd in /home/helphp/utils and launch :
 ```
 php install_db_and_modules.php /HOMEOFYOURINSTANCE
 ```
-(normaly /home/default if you'r still with the default instance example of composer branch).
+(normaly /home/default if you'r still with the default instance example of compose branch).
 
 
 it should launch the master slave replication et install the user db in mymaria-central. 
@@ -143,7 +143,7 @@ And you can switch back to the previous compose.yaml depending your needs.
 
 Evolution of our stack :
 
-![composer-multi.png](composer-multi.png)
+![compose-multi.png](compose-multi.png)
 
 Now if you want to experiment with file storage and network communication in a cluster/cloud you'll need at last 2 server or 2 VM to create a docker [Swarm](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Swarm) (3 if you want to play with Kubernetes, but Swarm and 2 server are enough for our needs). 
 

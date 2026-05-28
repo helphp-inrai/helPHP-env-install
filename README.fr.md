@@ -4,7 +4,7 @@
 
 Après l'installation [Docker](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Docker), et l'installation [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose) qui fonctionnent sur seulement un ordinateur, nous devrions étudier un environnement cloud/cluster enfin.
 Mais avant cela il y a un cas spécial que nous devons vérifier avec Compose : 
-Une pile composer avec plusieurs serveurs mysql. 
+Une pile compose avec plusieurs serveurs mysql. 
 
 Pourquoi ?
 
@@ -17,7 +17,7 @@ Pour la base de données, même si HelPHP offre une lib DB qui supporte nativeme
 
 La DB centralisée (DB_CENTRAL), est utilisée quand vous construisez plusieurs services/applications, mais que vous voulez vous connecter via des comptes utilisateur/groupe mutualisés. (vous pouvez utiliser un système d'auth externe, mais c'est en général plus sécurisé de compter sur un interne, et il n'est pas interdit d'établir automatiquement la connexion avec l'interne en se connectant avec l'externe... Double sécurité ;) ).
 
-Donc nous aurons besoin d'une petite pile "composer" avec trois serveurs MySQL pour faire quelques tests. (si tout va bien, cela devrait fonctionner au minimum comme la solution serveur MySQL unique, avec de vrais serveurs vous devriez obtenir 2x plus de vitesse sur les opérations de lecture).
+Donc nous aurons besoin d'une petite pile "compose" avec trois serveurs MySQL pour faire quelques tests. (si tout va bien, cela devrait fonctionner au minimum comme la solution serveur MySQL unique, avec de vrais serveurs vous devriez obtenir 2x plus de vitesse sur les opérations de lecture).
 
 ## Continuons...
 Dans la branche précédente pour [Compose](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Compose), nous avons fini une pile avec un serveur MySQL, nous devrions utiliser la même pile et faire quelques changements.
@@ -67,13 +67,13 @@ cp compose-3-servers.yaml /mnt/replicated/
 
 Avec nano ou n'importe quel éditeur de texte, éditez /mnt/replicated/compose-3-servers.yaml.
 
-Comme pour la pile composer vous devez remplacer "YOUR.H.C.NAME" par le nom que vous avez donné quand vous avez lancé le script 2-add-container.sh.
+Comme pour la pile compose vous devez remplacer "YOUR.H.C.NAME" par le nom que vous avez donné quand vous avez lancé le script 2-add-container.sh.
 
 Et remplacer "YOURPASSWORD" par un choisi pour chaque serveur MySQL
 
 - 4 quelques infos sur cette pile :
 
-vous verrez si vous comparez avec composer.yaml qu'il y a quelques différences : 
+vous verrez si vous comparez avec compose.yaml qu'il y a quelques différences : 
 les deux premiers serveurs Mysql démarrent en cluster et ont un my_init.cnf différent.
 Le slave est intéressant :
 
@@ -115,7 +115,7 @@ Puis ouvrez une session bash dans votre conteneur d'instance en cours d'exécuti
 
 Une fois connecté, cd dans /home/helphp/utils et lancez :
 
-`php install_db_and_modules.php /HOMEOFYOURINSTANCE` (normalement /home/default si vous êtes encore avec l'exemple d'instance par défaut de la branche composer).
+`php install_db_and_modules.php /HOMEOFYOURINSTANCE` (normalement /home/default si vous êtes encore avec l'exemple d'instance par défaut de la branche compose).
 
 cela devrait lancer la réplication maître esclave et installer la db utilisateur dans mymaria-central. 
 
@@ -136,7 +136,7 @@ Et vous pouvez revenir au fichier compose.yaml précédent selon vos besoins.
 
 Évolution de notre pile :
 
-![composer-multi.png](composer-multi.png)
+![compose-multi.png](compose-multi.png)
 
 Maintenant si vous voulez expérimenter avec un stockage de fichiers partagé et la communication réseau dans un cluster/cloud pour compléter les autres besoins en haute disponibilité, vous aurez besoin d'au moins 2 serveurs ou 2 VM pour créer un docker [Swarm](https://github.com/INRAI-helPHP/helPHP-env-install/tree/Swarm) (3 si vous voulez essayer avec Kubernetes, mais pour docker Swarm 2 serveurs sont suffisants). 
 
