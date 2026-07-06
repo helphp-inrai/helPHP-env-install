@@ -16,7 +16,7 @@ services:
 
   mymaria:
     restart: always
-    image: mariadb:12.2.2
+    image: mariadb:12.3.2
     container_name: mymaria
     volumes:
       - "./mymaria/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro"
@@ -29,7 +29,7 @@ services:
   
   mymaria-slave:
     restart: always
-    image: mariadb:12.2.2
+    image: mariadb:12.3.2
     container_name: mymaria-slave
     volumes:
       - "./mymaria-slave/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro"
@@ -42,7 +42,7 @@ services:
 
   mymaria-central:
     restart: always
-    image: mariadb:12.2.2
+    image: mariadb:12.3.2
     container_name: mymaria-central
     volumes:
       - "./mymaria-central/my-init.cnf:/etc/mysql/conf.d/my-init.cnf:ro"
