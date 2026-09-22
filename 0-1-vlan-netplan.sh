@@ -13,13 +13,12 @@ read -p "Enter the fixed ip " ip
 
 echo "    $interface:
       addresses:
-        - $ip/24
+        - 192.168.2.$ip/24
       dhcp4: false
       accept-ra: false
       routes:
       - to: \"default\"
-        via: \"$ip\"
+        via: \"192.168.2.1\"
       link-local: []" >> /etc/netplan/50-cloud-init.yaml
 
-netplan apply
 echo "netplan configuration done"
