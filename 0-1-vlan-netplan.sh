@@ -13,7 +13,7 @@ read -p "Enter the fixed ip " ip
 
 echo "    $interface:
       addresses:
-        - 192.168.2.$ip/24
+        - \"192.168.2.$ip/24\"
       dhcp4: false
       accept-ra: false
       routes:
