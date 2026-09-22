@@ -26,7 +26,7 @@ services:
 #       - "--entrypoints.websecure.forwardedHeaders.insecure=true"
 # httpchallenge is quite ok and easy, but in production you should prefer a dns challenge provider
 #       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
-#       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=websecure"
+#       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=web"
 #       - "--certificatesresolvers.letsencryptresolver.acme.email=myemail@myemail.com"
 #       - "--certificatesresolvers.letsencryptresolver.acme.storage=/letsencrypt/acme.json"
     volumes:
