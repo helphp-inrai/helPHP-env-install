@@ -5,12 +5,12 @@ mkdir -p /mnt/replicated/${container}/confs
 mkdir -p /mnt/distreplic/logs/${container}/apache2
 mkdir -p /mnt/distreplic/custhome/${container}/default
 mkdir -p /mnt/distreplic/tmps/${container}
-cp -r "$SCRIPT_DIR/confs/helphp-instance/"* /mnt/replicated/${servername}/confs/
+cp -r "$SCRIPT_DIR/confs/helphp-instance/"* /mnt/replicated/${container}/confs/
 
 git clone https://github.com/INRAI-helPHP/helPHP-instance.git /mnt/distreplic/custhome/${container}/default
 
-chown -R ${dockeruser}:www-data /mnt/replicated/${servername}/* 
-chown -R www-data:www-data  /mnt/distreplic/logs/${servername} /mnt/distreplic/custhome/${servername} /mnt/distreplic/tmps/${servername} /mnt/distreplic/custhome/${servername}/default
+chown -R ${dockeruser}:www-data /mnt/replicated/${container}/* 
+chown -R www-data:www-data  /mnt/distreplic/logs/${container} /mnt/distreplic/custhome/${container} /mnt/distreplic/tmps/${container} /mnt/distreplic/custhome/${container}/default
 
 chmod 777 /mnt/distreplic/tmps/${container}
 chmod 775 /mnt/replicated/${container}/confs/sites-available
