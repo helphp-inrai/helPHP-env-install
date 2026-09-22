@@ -89,11 +89,25 @@ Please note that after this step when we speak about the internal network or ip,
 
 So first we must discover the name of our network card :
 
-`ip a ` will display the current network configuration with one card already connected with the ip you're using for terminal ssh connection and a secondary, please note its name and launch 
+`ip a ` will display the current network configuration with one card already connected with the ip you're using for terminal ssh connection and a secondary, please note its name.
 
+If your system is not using netplan you can launch :
+--------------
 `./0-1-vlan.sh`
 
 answer the first question with the name you've just note, and at the second enter an ip compatible with your Vlan or network, for example 168.168.2.1 on the first server and .2 on the second.
+--------------
+
+If your system is netplan (experimental, not verified), launch :
+--------------
+`./0-1-vlan-netplan.sh` 
+
+This time the base ip will be 192.168.2.... And you'll need to choose the last number.
+so answer the first question with the name you've just note, and at the second the number.
+Please modify the script if needed.
+Then use `netplan try` to check if it work. If you're disconnected, netplan will restore the configuration after 120sec.
+Use `netplan apply` when you are sure of your configuration.
+--------------
 
 Normaly should be able to ping the other server/VM thru its ip (make sure it's ok before continuing)
 
