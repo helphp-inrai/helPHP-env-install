@@ -1,5 +1,5 @@
 #!/bin/bash
-### installing packets and sofware for hosts...
+### UNFINISHED DO NO USE ! .
 if [ "$(whoami)" != 'root' ];
     then
         echo $"You have no permission to run $0 as non-root user. Use sudo"

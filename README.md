@@ -82,11 +82,14 @@ apt install git -y && git clone -b Swarm https://github.com/INRAI-helPHP/helPHP-
 && bash 0-0-background.sh
 ```
 
-- 0-1 : Vlan setup 
+- 0-1 : Vlan manual setup
 If you have a secondary network card on each server just linked to a switch or a Vlan with no DHCP, we can create an internal network for communication with some fixed ip .
 
 Please note that after this step when we speak about the internal network or ip, it will refer to the choosen ips during this step, or the ip of your unique network card (we will make run this creature even there is one network card).
 
+But the ip of the second network card can be managed outside of the server or manualy.
+
+Now we will try the manual case : 
 So first we must discover the name of our network card :
 
 `ip a ` will display the current network configuration with one card already connected with the ip you're using for terminal ssh connection and a secondary, please note its name.
@@ -98,7 +101,7 @@ If your system is not using netplan you can launch :
 answer the first question with the name you've just note, and at the second enter an ip compatible with your Vlan or network, for example 168.168.2.1 on the first server and .2 on the second.
 --------------
 
-If your system is netplan (experimental, not verified), launch :
+If your system is netplan (UNFINISHED SECTION, not verified), launch :
 --------------
 `./0-1-vlan-netplan.sh` 
 
